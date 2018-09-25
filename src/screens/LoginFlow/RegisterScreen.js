@@ -11,8 +11,8 @@ export class RegisterScreen extends React.Component {
     constructor() {
         super();
         this.state = {
-            email: 'test@test.com',
-            password: 'password',
+            email: '',//'test@test.com',
+            password: '',//'password',
         }
     }
 
@@ -51,11 +51,13 @@ export class RegisterScreen extends React.Component {
               style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
               onChangeText={(text) => this.setState({email: text})}
               value=''
+              autoCapitalize='none'
             />
             <TextInput
               style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
               onChangeText={(text) => this.setState({password: text})}
               value=''
+              secureTextEntry={true}
             />
             <Button
               onPress={this.onPressRegister.bind(this)}
