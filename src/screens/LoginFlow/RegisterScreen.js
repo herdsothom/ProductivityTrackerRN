@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, ScrollView, TextInput, Button, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, TextInput, View } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import firebase from 'react-native-firebase';
 
 export class RegisterScreen extends React.Component {
@@ -41,32 +42,20 @@ export class RegisterScreen extends React.Component {
 
     render() {
         return(
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={{height:100}}></View>
-            <Text style={styles.welcome}>
-              Register Page
-            </Text>
-            <TextInput
-              style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.setState({email: text})}
-              value=''
-              autoCapitalize='none'
-            />
-            <TextInput
-              style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.setState({password: text})}
-              value=''
+          <View>
+            <FormLabel>Email</FormLabel>
+            <FormInput 
+              onChangeText={(text) => this.setState({email: text})}/>
+            <FormLabel>Password</FormLabel>
+            <FormInput 
               secureTextEntry={true}
-            />
+              onChangeText={(text) => this.setState({password: text})}/>
+            <View style={{height:15}}/>
             <Button
               onPress={this.onPressRegister.bind(this)}
               title="Register"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
+              />
           </View>
-        </ScrollView>
         );
     }
 }

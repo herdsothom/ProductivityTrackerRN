@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Platform, Image, Text, View, ScrollView, TextInput, Button, Alert } from 'react-native';
-
+import { StyleSheet, Platform, Image, Text, View, Alert } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import firebase from 'react-native-firebase';
 
 export class LoginScreen extends React.Component {
@@ -28,8 +28,8 @@ export class LoginScreen extends React.Component {
         this.setState({
           loading: false,
           user,
-          email: '',//'test@test.com',
-          password: '',//'password',
+          email: 'test@test.com',//'test@test.com',
+          password: 'password',//'password',
         });
         console.log('user logged in', user);
         // Alert.alert(
@@ -72,38 +72,58 @@ export class LoginScreen extends React.Component {
   
     render() {
       return (
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={{height:100}}></View>
-            <Text style={styles.welcome}>
-              Login Page
-            </Text>
-            <TextInput
-              style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.setState({email: text})}
-              value=''
-              autoCapitalize='none'
+        <View>
+          <FormLabel>Email</FormLabel>
+          <FormInput 
+            onChangeText={(text) => this.setState({email: text})}/>
+          <FormLabel>Password</FormLabel>
+          <FormInput 
+            secureTextEntry={true}
+            onChangeText={(text) => this.setState({password: text})}/>
+          <Button
+            onPress={this.onPressLogin.bind(this)}
+            title="Login"
+          />
+          <View style={{height:15}}/>
+          <Button
+            onPress={this.onPressRegister.bind(this)}
+            title="Register"
             />
-            <TextInput
-              style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(text) => this.setState({password: text})}
-              secureTextEntry={true}
-              value=''
-            />
-            <Button
-              onPress={this.onPressLogin.bind(this)}
-              title="Login"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-            <Button
-              onPress={this.onPressRegister.bind(this)}
-              title="Register"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-          </View>
-        </ScrollView>
+        </View>
+        // <ScrollView>
+        //   <View style={styles.container}>
+        //     <View style={{height:100}}></View>
+        //     <Text style={styles.welcome}>
+        //       Login Page
+        //     </Text>
+        //     <TextInput
+        //       style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
+        //       onChangeText={(text) => this.setState({email: text})}
+        //       value=''
+        //       autoCapitalize='none'
+        //     />
+        //     <TextInput
+        //       style={{height: 30, width:200, borderColor: 'gray', borderWidth: 1}}
+        //       onChangeText={(text) => this.setState({password: text})}
+        //       secureTextEntry={true}
+        //       value=''
+        //     />
+        //     <Button
+        //       onPress={this.onPressLogin.bind(this)}
+        //       title="Login"
+        //       color="#841584"
+        //       accessibilityLabel="Learn more about this purple button"
+        //     />
+        //     <Button
+        //       onPress={this.onPressRegister.bind(this)}
+        //       title="Register"
+        //       color="#841584"
+        //       accessibilityLabel="Learn more about this purple button"
+        //     />
+        //   </View>
+        // </ScrollView>
+
+        
         
       );
     }
