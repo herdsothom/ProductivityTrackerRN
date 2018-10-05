@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View, TextInput, Button, Picker } from 'react-native';
-// import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
+import { Text, View, TextInput, Picker } from 'react-native';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import firebase from 'react-native-firebase';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -37,25 +37,38 @@ export class NewTaskScreen extends React.Component {
         
         return (
             <View>
-                <Text>Name:</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={(text) => this.setState({ name: text })}
-                    value={this.state.text}
-                />
-                <Text>Description:</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={(text) => this.setState({ description: text })}
-                    value={this.state.text}
-                />
+                <FormLabel>Name</FormLabel>
+                <FormInput 
+                    onChangeText={(text) => this.setState({name: text})}/>
+                <FormLabel>Description</FormLabel>
+                <FormInput 
+                    secureTextEntry={true}
+                    onChangeText={(text) => this.setState({description: text})}/>
                 <Button
                     onPress={this.onPressSubmit.bind(this)}
-                    title="Submit!"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"
+                    title="Submit"
                 />
             </View>
+            // <View>
+            //     <Text>Name:</Text>
+            //     <TextInput
+            //         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            //         onChangeText={(text) => this.setState({ name: text })}
+            //         value={this.state.text}
+            //     />
+            //     <Text>Description:</Text>
+            //     <TextInput
+            //         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            //         onChangeText={(text) => this.setState({ description: text })}
+            //         value={this.state.text}
+            //     />
+            //     <Button
+            //         onPress={this.onPressSubmit.bind(this)}
+            //         title="Submit!"
+            //         color="#841584"
+            //         accessibilityLabel="Learn more about this purple button"
+            //     />
+            // </View>
         );
     }
 }

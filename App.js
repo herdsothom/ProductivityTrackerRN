@@ -30,10 +30,25 @@ const TasksStack = createStackNavigator({
     initialRouteName: 'Tasks',
   });
 
+const AnalyticsStack = createStackNavigator({
+  Analytics: AnalyticsScreen,
+},
+{
+  initialRouteName: 'Analytics',
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
+},
+{
+  initialRouteName: 'Settings',
+});
+
+
 const AppStack = createBottomTabNavigator({
   Tasks: TasksStack,
-  Analytics: AnalyticsScreen,
-  Settings: SettingsScreen
+  Analytics: AnalyticsStack,
+  Settings: SettingsStack
 },
 {
   navigationOptions: ({ navigation }) => ({
