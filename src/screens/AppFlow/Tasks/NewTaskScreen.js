@@ -49,26 +49,6 @@ export class NewTaskScreen extends React.Component {
                     title="Submit"
                 />
             </View>
-            // <View>
-            //     <Text>Name:</Text>
-            //     <TextInput
-            //         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            //         onChangeText={(text) => this.setState({ name: text })}
-            //         value={this.state.text}
-            //     />
-            //     <Text>Description:</Text>
-            //     <TextInput
-            //         style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            //         onChangeText={(text) => this.setState({ description: text })}
-            //         value={this.state.text}
-            //     />
-            //     <Button
-            //         onPress={this.onPressSubmit.bind(this)}
-            //         title="Submit!"
-            //         color="#841584"
-            //         accessibilityLabel="Learn more about this purple button"
-            //     />
-            // </View>
         );
     }
 }
