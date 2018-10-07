@@ -18,9 +18,7 @@ export class NewTaskScreen extends React.Component {
             description: '',
             times: [],
         }
-
         this.ref = firebase.firestore().collection('tasks');
-
     }
 
 
@@ -42,11 +40,11 @@ export class NewTaskScreen extends React.Component {
                     onChangeText={(text) => this.setState({name: text})}/>
                 <FormLabel>Description</FormLabel>
                 <FormInput 
-                    secureTextEntry={true}
                     onChangeText={(text) => this.setState({description: text})}/>
                 <Button
                     onPress={this.onPressSubmit.bind(this)}
                     title="Submit"
+                    backgroundColor={'#007aff'}
                 />
             </View>
         );

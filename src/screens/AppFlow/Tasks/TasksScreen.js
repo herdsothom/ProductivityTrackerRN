@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import { NewTaskScreen } from './NewTaskScreen';
 import firebase from 'react-native-firebase';
 import moment from 'moment';
+import Swipeout from 'react-native-swipeout'
 
 import { List, ListItem } from 'react-native-elements';
 
@@ -48,7 +49,7 @@ export class TasksScreen extends React.Component {
     })
     this.setState({
       tasks: this.state.tasks,
-    })
+    })      
   }
 
    millisToMinutesAndSeconds(millis) {
@@ -85,12 +86,12 @@ export class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Add New Task',
+      headerTitle: 'Tasks',
       headerRight: (
-        <Button
-          onPress={navigation.getParam('increaseCount')}
-          title="+"
-        />
+          <Button
+            onPress={navigation.getParam('increaseCount')}
+            title="Add Task"
+          />
       ),
     };
   };
@@ -125,22 +126,60 @@ export class TasksScreen extends React.Component {
     return times.length % 2 !== 0;
   }
 
+  deleteTask(){
+    this.state.swipedTask.doc.ref.delete();
+    this.setState({swipedTask:null})
+  }
+
+  editTask(){
+    this.props.navigation.navigate('EditTask', {task: this.state.swipedTask})
+    this.setState({swipedTask:null})
+  }
+
   render() {
     if(this.state.loading) return null;
+    var swipeoutBtns = [
+    {
+      text: 'Edit',
+      backgroundColor: '#ffcc22',
+      onPress: () => { this.editTask() }
+    },
+    {
+      text: 'Delete',
+      backgroundColor: '#ff3b30',
+      onPress: () => { this.deleteTask()}
+    },
+    
+    ]
     return (
       <View style={{ flex: 1 }}>
         {this.state.tasks.map(task => {
           let bgColor = this.isClockRunning(task.times) ? 'green' : 'white';
+
+          
           return (
-          <ListItem
-            key={task.key}
-            title={task.name}
-            subtitle={task.description}
-            onPress={() => this.onPressTask(task)}
-            hideChevron={true}
-            containerStyle={{backgroundColor:bgColor}}
-            rightTitle={task.rightTitle ? task.rightTitle+'' : 'Null'}
-          />);
+          <Swipeout 
+            autoClose={true}
+            right={swipeoutBtns}
+
+            onOpen={(() => {
+              this.setState({
+                swipedTask: task,
+              })
+            })}
+            >
+           
+            <ListItem
+              key={task.key}
+              title={task.name}
+              subtitle={task.description}
+              onPress={() => this.onPressTask(task)}
+              hideChevron={true}
+              containerStyle={{backgroundColor:bgColor}}
+              rightTitle={task.rightTitle ? task.rightTitle+'' : 'Null'}
+            />
+          </Swipeout>
+          );
         })}
       </View>
     );

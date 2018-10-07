@@ -52,6 +52,7 @@ export class RegisterScreen extends React.Component {
               onChangeText={(text) => this.setState({password: text})}/>
             <View style={{height:15}}/>
             <Button
+              backgroundColor={'#007aff'}
               onPress={this.onPressRegister.bind(this)}
               title="Register"
               />

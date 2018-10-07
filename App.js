@@ -12,19 +12,13 @@ import { TasksScreen } from './src/screens/AppFlow/Tasks/TasksScreen';
 import { AnalyticsScreen } from './src/screens/AppFlow/AnalyticsScreen';
 import { SettingsScreen } from './src/screens/AppFlow/SettingsScreen';
 import { NewTaskScreen } from './src/screens/AppFlow/Tasks/NewTaskScreen';
+import { EditTaskScreen } from './src/screens/AppFlow/Tasks/EditTaskScreen';
 
-// const RootStack = createStackNavigator(
-//   {
-//     Login: LoginScreen,
-//     Register: RegisterScreen,
-//   },
-//   {
-//     initialRouteName: 'Login',
-//   }
-// );
+
 const TasksStack = createStackNavigator({
   Tasks: TasksScreen,
   NewTask: NewTaskScreen,
+  EditTask: EditTaskScreen,
 },
   {
     initialRouteName: 'Tasks',
