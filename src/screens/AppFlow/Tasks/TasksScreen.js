@@ -1,13 +1,12 @@
 import React from 'react';
-import { Text, Button, View, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Text, View, FlatList } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { NewTaskScreen } from './NewTaskScreen';
 import firebase from 'react-native-firebase';
 import moment from 'moment';
 import Swipeout from 'react-native-swipeout'
 
-import { List, ListItem } from 'react-native-elements';
+import { Button, List, ListItem, Icon } from 'react-native-elements';
 
 export class TasksScreen extends React.Component {
 
@@ -46,10 +45,11 @@ export class TasksScreen extends React.Component {
         rightTitle = this.millisToMinutesAndSeconds(this.calculateTotalTimeElapsed(task.times))+'s';
       }
       task.rightTitle = rightTitle;
-    })
+    });
+    
     this.setState({
       tasks: this.state.tasks,
-    })      
+    });      
   }
 
    millisToMinutesAndSeconds(millis) {
@@ -88,10 +88,14 @@ export class TasksScreen extends React.Component {
     return {
       headerTitle: 'Tasks',
       headerRight: (
+        <View>
           <Button
             onPress={navigation.getParam('increaseCount')}
             title="Add Task"
+            backgroundColor={'#007aff'}
+            rightIcon={{name: 'add-circle', type: 'ionicons'}}
           />
+        </View>
       ),
     };
   };
@@ -155,10 +159,9 @@ export class TasksScreen extends React.Component {
       <View style={{ flex: 1 }}>
         {this.state.tasks.map(task => {
           let bgColor = this.isClockRunning(task.times) ? 'green' : 'white';
-
-          
           return (
           <Swipeout 
+            key={task.key}
             autoClose={true}
             right={swipeoutBtns}
 
@@ -170,8 +173,8 @@ export class TasksScreen extends React.Component {
             >
            
             <ListItem
-              key={task.key}
               title={task.name}
+              leftIcon={{name: 'add-circle', type: 'ionicons'}}
               subtitle={task.description}
               onPress={() => this.onPressTask(task)}
               hideChevron={true}

@@ -153,6 +153,7 @@ android {
 }
 
 dependencies {
+    // compile files('libs/MPAndroidChart-v3.0.1.jar')
     compile project(':react-native-vector-icons')
   implementation(project(':react-native-firebase')) {
     transitive = false

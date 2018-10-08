@@ -115,6 +115,7 @@ export class LoginScreen extends React.Component {
         />
         <View style={{height:15}}/>
         <Button   
+          backgroundColor={'#8e8e93'}
           onPress={this.onPressRegister.bind(this)}
           title="Register"
           />

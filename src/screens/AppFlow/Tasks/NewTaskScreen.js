@@ -41,11 +41,19 @@ export class NewTaskScreen extends React.Component {
                 <FormLabel>Description</FormLabel>
                 <FormInput 
                     onChangeText={(text) => this.setState({description: text})}/>
+                {/* <Picker
+                    // selectedValue={this.state.language}
+                    style={{ height: 50, width: 100 }}
+                    onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                    <Picker.Item label="Java" value="java" />
+                    <Picker.Item label="JavaScript" value="js" />
+                </Picker> */}
                 <Button
                     onPress={this.onPressSubmit.bind(this)}
                     title="Submit"
                     backgroundColor={'#007aff'}
                 />
+                
             </View>
         );
     }
