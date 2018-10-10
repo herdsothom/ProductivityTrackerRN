@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, ScrollView, TextInput, View, Alert, ActivityIndicator } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import firebase from 'react-native-firebase';
 import FirebaseProvider from '../../database/FirebaseProvider';
 
 export class RegisterScreen extends React.Component {

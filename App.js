@@ -4,8 +4,6 @@ import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator }
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import firebase from 'react-native-firebase';
-
 import { LoginScreen } from './src/screens/LoginFlow/LoginScreen';
 import { RegisterScreen } from './src/screens/LoginFlow/RegisterScreen';
 import { TasksScreen } from './src/screens/AppFlow/Tasks/TasksScreen';

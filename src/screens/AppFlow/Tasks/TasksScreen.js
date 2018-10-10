@@ -2,10 +2,9 @@ import React from 'react';
 import { Text, View, FlatList, Alert } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { NewTaskScreen } from './NewTaskScreen';
-import firebase from 'react-native-firebase';
 import moment from 'moment';
-import Swipeout from 'react-native-swipeout'
-
+import Swipeout from 'react-native-swipeout';
+import FirebaseProvider from '../../../database/FirebaseProvider';
 import { Button, List, ListItem, Icon } from 'react-native-elements';
 
 export class TasksScreen extends React.Component {
@@ -18,12 +17,12 @@ export class TasksScreen extends React.Component {
       tasks: [],
     }
     this.onPressTask = this.onPressTask.bind(this);
-    this.ref = firebase.firestore().collection('tasks');
   }
 
   componentDidMount() {
     this.props.navigation.setParams({ increaseCount: this._increaseCount });
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
+    this.unsubscribe = FirebaseProvider.getSnapshotRef(this.onCollectionUpdate.bind(this));
+    console.log(this.unsubscribe)
     this.tick();
     this.interval = setInterval(() => this.tick(), 1000);
 
@@ -108,7 +107,7 @@ export class TasksScreen extends React.Component {
     let now = moment().toString();
     let arr = task.times;
     arr.push(now);
-    this.ref.doc(task.key).update({times: arr});
+    FirebaseProvider.updateDoc(task.key,{times:arr});
   }
 
   calculateTotalTimeElapsed(times){
@@ -131,7 +130,8 @@ export class TasksScreen extends React.Component {
   }
 
   deleteTask(){
-    this.state.swipedTask.doc.ref.delete();
+    // this.state.swipedTask.doc.ref.delete();
+    FirebaseProvider.deleteDoc(this.state.swipedTask.doc);
     this.setState({swipedTask:null})
   }
 

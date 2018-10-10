@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, Alert, ActivityIndicator } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
-import firebase from 'react-native-firebase';
 import FirebaseProvider from '../../database/FirebaseProvider';
 export class LoginScreen extends React.Component {
 

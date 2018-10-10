@@ -1,9 +1,8 @@
 import React from 'react';
 import { Text, View, TextInput, Picker } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
-import firebase from 'react-native-firebase';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import FirebaseProvider from '../../../database/FirebaseProvider';
 
 export class NewTaskScreen extends React.Component {
 
@@ -18,16 +17,16 @@ export class NewTaskScreen extends React.Component {
             description: '',
             times: [],
         }
-        this.ref = firebase.firestore().collection('tasks');
     }
 
 
     onPressSubmit() {
-        this.ref.add({
+        item = {
             name: this.state.name,
             description: this.state.description,
             times: this.state.times,
-        });
+        };
+        FirebaseProvider.addItem(item);
         this.props.navigation.goBack();
     }
 
