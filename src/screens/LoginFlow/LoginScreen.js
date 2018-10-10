@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, Alert, ActivityIndicator } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import firebase from 'react-native-firebase';
-
+import FirebaseProvider from '../../database/FirebaseProvider';
 export class LoginScreen extends React.Component {
 
     static navigationOptions = {
@@ -52,30 +52,23 @@ export class LoginScreen extends React.Component {
         const { email, password } = this.state;
         if(email == '') {
           Alert.alert('Enter an email')
-          // return false;
+          return;
         }
         if(password == ''){
           Alert.alert('Enter a password')
-          // return false
+          return;
         }
-        firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
-          .then((user) => {
-            console.log(user)
-            // If you need to do anything with the user, do it here
-            // The user will be logged in automatically by the 
-            // `onAuthStateChanged` listener we set up in App.js earlier
+        if (FirebaseProvider.signIn(email, password)){
+          
+          setTimeout(() => {
             this.setState({loading:false})
             this.props.navigation.navigate('App');
-
-          })
-          .catch((error) => {
-            const { code, message } = error;
-            console.log('login error', code, error)
-            Alert.alert('Login Error', error)
-            // For details of error codes, see the docs
-            // The message contains the default Firebase string
-            // representation of the error
-          });
+        }, 1000)
+         
+        }
+        else {
+          this.setState({loading:false})
+        } 
       }
   
     render() {

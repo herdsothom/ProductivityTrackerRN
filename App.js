@@ -10,7 +10,7 @@ import { LoginScreen } from './src/screens/LoginFlow/LoginScreen';
 import { RegisterScreen } from './src/screens/LoginFlow/RegisterScreen';
 import { TasksScreen } from './src/screens/AppFlow/Tasks/TasksScreen';
 import { AnalyticsScreen } from './src/screens/AppFlow/AnalyticsScreen';
-import { SettingsScreen } from './src/screens/AppFlow/SettingsScreen';
+import { SettingsScreen } from './src/screens/AppFlow/Settings/SettingsScreen';
 import { NewTaskScreen } from './src/screens/AppFlow/Tasks/NewTaskScreen';
 import { EditTaskScreen } from './src/screens/AppFlow/Tasks/EditTaskScreen';
 
@@ -30,6 +30,8 @@ const AnalyticsStack = createStackNavigator({
 {
   initialRouteName: 'Analytics',
 });
+
+
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
@@ -55,6 +57,8 @@ const AppStack = createBottomTabNavigator({
         iconName = `ios-pie${true ? '' : '-outline'}`;
       } else if (routeName === 'Settings') {
         iconName = `ios-options${true ? '' : '-outline'}`;
+      } else if (routeName == 'Calendar') {
+        iconName = `ios-calendar${true ? '' : '-outline'}`;
       }
 
       // You can return any component that you like here! We usually use an

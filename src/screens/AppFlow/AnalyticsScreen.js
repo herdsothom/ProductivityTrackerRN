@@ -96,7 +96,6 @@ export class AnalyticsScreen extends React.Component {
 
     render() {
         const pieOptions = {
-          
           title : {
               text: 'Time Spent Per Task',
               subtext: 'in Minutes',

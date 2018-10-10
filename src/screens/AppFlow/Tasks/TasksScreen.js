@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, Alert } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { NewTaskScreen } from './NewTaskScreen';
 import firebase from 'react-native-firebase';
@@ -135,6 +135,14 @@ export class TasksScreen extends React.Component {
     this.setState({swipedTask:null})
   }
 
+  deleteTaskPressed() {
+    Alert.alert('Warning', 'Are you sure you want to delete this task?',
+    [
+      {text: 'Cancel', onPress: () => {return;}},
+      {text: 'OK', onPress: () => this.deleteTask()}
+    ])
+  }
+
   editTask(){
     this.props.navigation.navigate('EditTask', {task: this.state.swipedTask})
     this.setState({swipedTask:null})
@@ -151,7 +159,7 @@ export class TasksScreen extends React.Component {
     {
       text: 'Delete',
       backgroundColor: '#ff3b30',
-      onPress: () => { this.deleteTask()}
+      onPress: () => { this.deleteTaskPressed()}
     },
     
     ]
@@ -174,7 +182,7 @@ export class TasksScreen extends React.Component {
            
             <ListItem
               title={task.name}
-              leftIcon={{name: 'add-circle', type: 'ionicons'}}
+              // leftIcon={{name: 'add-circle', type: 'ionicons'}}
               subtitle={task.description}
               onPress={() => this.onPressTask(task)}
               hideChevron={true}
